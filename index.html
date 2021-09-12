@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        #map {
+            width: 1024px;
+            height: 843px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet-svg-shape-markers.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/BTBAlignment_1.js"></script>
+        <script src="data/SeabeeAlignment_2.js"></script>
+        <script src="data/SitePhotosMarch2021_3.js"></script>
+        <script src="data/RTBAlignment_4.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-5.693573689621995,176.09867196843408],[-5.670491757201324,176.12665641359854]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://www.tcap.tv"><img src="images/TCAP.png" height="120px" width="95px"></a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_OrthophotoSthArmAugust2019_0');
+        map.getPane('pane_OrthophotoSthArmAugust2019_0').style.zIndex = 400;
+        var img_OrthophotoSthArmAugust2019_0 = 'data/OrthophotoSthArmAugust2019_0.png';
+        var img_bounds_OrthophotoSthArmAugust2019_0 = [[-5.711572147119697,176.09110920032356],[-5.648781396653656,176.15017891086856]];
+        var layer_OrthophotoSthArmAugust2019_0 = new L.imageOverlay(img_OrthophotoSthArmAugust2019_0,
+                                              img_bounds_OrthophotoSthArmAugust2019_0,
+                                              {pane: 'pane_OrthophotoSthArmAugust2019_0'});
+        bounds_group.addLayer(layer_OrthophotoSthArmAugust2019_0);
+        map.addLayer(layer_OrthophotoSthArmAugust2019_0);
+        function pop_BTBAlignment_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Layer</strong><br />' + (feature.properties['Layer'] !== null ? autolinker.link(feature.properties['Layer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PaperSpace'] !== null ? autolinker.link(feature.properties['PaperSpace'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SubClasses</th>\
+                        <td>' + (feature.properties['SubClasses'] !== null ? autolinker.link(feature.properties['SubClasses'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Linetype'] !== null ? autolinker.link(feature.properties['Linetype'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['EntityHand'] !== null ? autolinker.link(feature.properties['EntityHand'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Text</th>\
+                        <td>' + (feature.properties['Text'] !== null ? autolinker.link(feature.properties['Text'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_BTBAlignment_1_0() {
+            return {
+                pane: 'pane_BTBAlignment_1',
+                opacity: 1,
+                color: 'rgba(232,255,23,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 10.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_BTBAlignment_1');
+        map.getPane('pane_BTBAlignment_1').style.zIndex = 401;
+        map.getPane('pane_BTBAlignment_1').style['mix-blend-mode'] = 'normal';
+        var layer_BTBAlignment_1 = new L.geoJson(json_BTBAlignment_1, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_BTBAlignment_1',
+            layerName: 'layer_BTBAlignment_1',
+            pane: 'pane_BTBAlignment_1',
+            onEachFeature: pop_BTBAlignment_1,
+            style: style_BTBAlignment_1_0,
+        });
+        bounds_group.addLayer(layer_BTBAlignment_1);
+        map.addLayer(layer_BTBAlignment_1);
+        function pop_SeabeeAlignment_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FID'] !== null ? autolinker.link(feature.properties['FID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_SeabeeAlignment_2_0() {
+            return {
+                pane: 'pane_SeabeeAlignment_2',
+                interactive: false,
+            }
+        }
+        function style_SeabeeAlignment_2_1() {
+            return {
+                pane: 'pane_SeabeeAlignment_2',
+                opacity: 1,
+                color: 'rgba(228,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_SeabeeAlignment_2');
+        map.getPane('pane_SeabeeAlignment_2').style.zIndex = 402;
+        map.getPane('pane_SeabeeAlignment_2').style['mix-blend-mode'] = 'normal';
+        var layer_SeabeeAlignment_2 = new L.geoJson.multiStyle(json_SeabeeAlignment_2, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_SeabeeAlignment_2',
+            layerName: 'layer_SeabeeAlignment_2',
+            pane: 'pane_SeabeeAlignment_2',
+            onEachFeature: pop_SeabeeAlignment_2,
+            styles: [style_SeabeeAlignment_2_0,style_SeabeeAlignment_2_1,]
+        });
+        bounds_group.addLayer(layer_SeabeeAlignment_2);
+        map.addLayer(layer_SeabeeAlignment_2);
+        function pop_SitePhotosMarch2021_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+					<tr>\
+                        <td colspan="2"><strong>photo1</strong><br /><img src="' + (feature.properties['photo1'] !== null ? Autolinker.link(String(feature.properties['photo1'])) : '') + '" height="400px" width="532px"/></td>\
+						</tr>\
+                    <tr>\
+                        <td colspan="2"><strong>photo2</strong><br /><img src="' + (feature.properties['photo2'] !== null ? Autolinker.link(String(feature.properties['photo2'])) : '') + '" height="400px" width="532px"/></td>\
+						</tr>\
+                    <tr>\
+                        <td colspan="2"><strong>photo3</strong><br /><img src="' + (feature.properties['photo3'] !== null ? Autolinker.link(String(feature.properties['photo3'])) : '') + '" height="400px" width="532px"/></td>\
+						</tr>\
+                    <tr>\
+                        <th scope="row">url 1</th>\
+                        <td>' + (feature.properties['url 1'] !== null ? autolinker.link(feature.properties['url 1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">url 2</th>\
+                        <td>' + (feature.properties['url 2'] !== null ? autolinker.link(feature.properties['url 2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">url 3</th>\
+                        <td>' + (feature.properties['url 3'] !== null ? autolinker.link(feature.properties['url 3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_SitePhotosMarch2021_3_0() {
+            return {
+                pane: 'pane_SitePhotosMarch2021_3',
+                shape: 'diamond',
+                radius: 8.8,
+                opacity: 1,
+                color: 'rgba(128,17,25,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(219,30,42,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_SitePhotosMarch2021_3');
+        map.getPane('pane_SitePhotosMarch2021_3').style.zIndex = 403;
+        map.getPane('pane_SitePhotosMarch2021_3').style['mix-blend-mode'] = 'normal';
+        var layer_SitePhotosMarch2021_3 = new L.geoJson(json_SitePhotosMarch2021_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_SitePhotosMarch2021_3',
+            layerName: 'layer_SitePhotosMarch2021_3',
+            pane: 'pane_SitePhotosMarch2021_3',
+            onEachFeature: pop_SitePhotosMarch2021_3,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_SitePhotosMarch2021_3_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_SitePhotosMarch2021_3);
+        map.addLayer(layer_SitePhotosMarch2021_3);
+        function pop_RTBAlignment_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Length'] !== null ? autolinker.link(feature.properties['Length'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Orient'] !== null ? autolinker.link(feature.properties['Orient'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_RTBAlignment_4_0() {
+            return {
+                pane: 'pane_RTBAlignment_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 10.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_RTBAlignment_4');
+        map.getPane('pane_RTBAlignment_4').style.zIndex = 404;
+        map.getPane('pane_RTBAlignment_4').style['mix-blend-mode'] = 'normal';
+        var layer_RTBAlignment_4 = new L.geoJson(json_RTBAlignment_4, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_RTBAlignment_4',
+            layerName: 'layer_RTBAlignment_4',
+            pane: 'pane_RTBAlignment_4',
+            onEachFeature: pop_RTBAlignment_4,
+            style: style_RTBAlignment_4_0,
+        });
+        bounds_group.addLayer(layer_RTBAlignment_4);
+        map.addLayer(layer_RTBAlignment_4);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/RTBAlignment_4.png" /> RTB Alignment': layer_RTBAlignment_4,'<img src="legend/SitePhotosMarch2021_3.png" /> Site Photos March 2021': layer_SitePhotosMarch2021_3,'<img src="legend/SeabeeAlignment_2.png" /> Seabee Alignment': layer_SeabeeAlignment_2,'<img src="legend/BTBAlignment_1.png" /> BTB Alignment': layer_BTBAlignment_1,"Orthophoto Sth Arm August 2019": layer_OrthophotoSthArmAugust2019_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        </script>
+    </body>
+</html>
